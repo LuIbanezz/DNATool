@@ -1,16 +1,19 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "algorithm.h"
 
 using namespace std;
 int readGen (char * genPath);
 
-int main ( int argc , char * argv[] ) {         //
-
-
+int main ( int argc , char * argv[] ) {         
     int index = readGen(argv[1]);
 
-    cout << index << endl;
+    cout << argv[1] << endl;
+
+    char* gen1 = "actg";
+    char* gen2 = "tcag";
+    algorithm(gen1, gen2, 4, 4);
 
     return 0;
 }
@@ -22,30 +25,22 @@ int main ( int argc , char * argv[] ) {         //
 
 int readGen (char * genPath)   // recibir nombre del archivo txt
 {
-    ifstream file(genPath);
-    file.open(genPath, std::ifstream::in);
-
-    if (!file.is_open())
-    {
-        perror("Error while opening file ");
-        return false;
-    }
+    ifstream fin(genPath);
 
     string line;
     int i = 0;
     int originIndex = 0;
 
-    while(getline(file, line))
+    while(getline(fin, line))
     {
-        if(line == "ORIGIN"){
+        if(line.find("ORIGIN")!=(string::npos)){
+
             originIndex = i;
             break;
         }
         i++;
     }
 
-    file.close();
-
     return originIndex;
-}
+} 
 
