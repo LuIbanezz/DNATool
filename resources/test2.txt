@@ -1,0 +1,11 @@
+LOCUS       MZ314997               29883 bp    RNA     linear   VRL 30-JUL-2021
+DEFINITION  Severe acute respiratory syndrome coronavirus 2 isolate
+            SARS-CoV-2/human/DEU/SARS-CoV-2_B.1.1.7_VeroE6_210226_P2/2021,
+            complete genome.
+ACCESSION   MZ314997
+VERSION     MZ314997.2
+KEYWORDS    .
+SOURCE      Severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)
+ORIGIN      
+        1 cgatagc
+//     
