@@ -1,9 +1,4 @@
-#include <vector>
 #include "algorithm.h"
-#include <iostream>
-#define INDELSCORE -1
-#define MATCHSCORE 1
-#define SUSTSCORE -1
 
 using namespace std;
 
