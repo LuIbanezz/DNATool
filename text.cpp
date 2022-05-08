@@ -60,24 +60,16 @@ string getStringPath (char* genPath)
 }   
 
 
-void writeGen (vector<char> gen1, vector<char> gen2, size_t sizeGen1, size_t sizeGen2)
+void writeGen (deque<char> alignment, size_t sizeGen1, size_t sizeGen2 )
 {
     ostringstream out1;
     ostringstream out2;
 
-    for (char c: gen1)
-    {
-        out1 << c;
-    }
-
-    for (char c: gen2)
-    {
-        out2 << c;
-    }
+    for()
 
     string output1(out1.str());
     string output2(out2.str());
-    
+
     
 
 

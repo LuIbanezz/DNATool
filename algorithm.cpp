@@ -2,7 +2,7 @@
 
 using namespace std;
 
-vector<char> algorithm (char* gen1, char* gen2, int sizeGen1, int sizeGen2)
+deque<char> algorithm(char* gen1, char* gen2, size_t sizeGen1, size_t sizeGen2)
 {
     AlgorithmData* mat = new AlgorithmData[(sizeGen1+1)*(sizeGen2+1)];
 
@@ -30,7 +30,7 @@ vector<char> algorithm (char* gen1, char* gen2, int sizeGen1, int sizeGen2)
     //cout << mat[17].diagonal << endl;   // test
     //
 
-    vector<char> alignment = calculateOptimumPath(mat, sizeGen1, sizeGen2);
+    deque<char> alignment = calculateOptimumPath(mat, sizeGen1, sizeGen2, gen1, gen2);
 
     return alignment;
 
@@ -95,13 +95,13 @@ void calculateScoreandDirection (AlgorithmData* mat, char* gen1, char* gen2, int
 
 }
 
-vector<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2)
+deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2, char* gen1, char* gen2)
 {
     int currentPositionIndex = (sizeGen1 + 1)*(sizeGen2 + 1) - 1;
     int nextPositionIndex = currentPositionIndex;
 
     int i = 0;
-    vector<char> alignment;
+    deque<char> alignment;
 
     while(nextPositionIndex != 0)
     {
@@ -109,22 +109,23 @@ vector<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2
         {
             case vertical:
                 nextPositionIndex -= (sizeGen1+1);
-                alignment.push_back(' ');
+                alignment.push_front(' ');
+                (gen1).insert(i, "-", 1);
                 break;
             case horizontal:
                 nextPositionIndex -= 1;
-                alignment.push_back(' ');
+                alignment.push_front(' ');
                 break;
             case diagonal:
                 int currentPositionIndex = nextPositionIndex;
                 nextPositionIndex -= (sizeGen1+2);
                 if(mat[currentPositionIndex].score > mat[nextPositionIndex].score)  // coinciden
                 {
-                    alignment.push_back('|');
+                    alignment.push_front('|');
                 }
                 else
                 {
-                    alignment.push_back('*');
+                    alignment.push_front('*');
                 }
                 break;
         }

@@ -14,7 +14,7 @@ int main ( int argc , char * argv[] ) {
 
     char* pointer1 = &gen1[0];
     char* pointer2 = &gen2[0];
-    vector<char> alignment = algorithm(pointer1, pointer2, gen1.size(), gen2.size());
+    deque<char> alignment = algorithm(pointer1, pointer2, gen1.size(), gen2.size());
 
     return 0;
 }
