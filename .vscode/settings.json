@@ -28,7 +28,8 @@
     "xlocinfo": "cpp",
     "xlocnum": "cpp",
     "xmemory": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "deque": "cpp"
   },
   
       "cmake.debugConfig": {
