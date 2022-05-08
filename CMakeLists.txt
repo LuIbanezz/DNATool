@@ -6,6 +6,8 @@ enable_testing()
 
 add_executable(main main.cpp algorithm.cpp)
 
+add_executable(maintest maintest.cpp algorithm.cpp)
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
