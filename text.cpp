@@ -8,6 +8,8 @@
 string readGen(string genPath)   // recibir nombre del archivo txt
 {
     ifstream fin(genPath);
+
+    cout << genPath << endl;
     string line1;
     string line2;
     int i=0;
