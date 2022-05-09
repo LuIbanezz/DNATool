@@ -7,5 +7,10 @@ VERSION     MZ314997.2
 KEYWORDS    .
 SOURCE      Severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2)
 ORIGIN      
-        1 gattaca
+        1 taaaggttta taccttccca ggtaacaaac caaccaactt tcgatctctt gtagatctgt
+       61 tctctaaacg aactttaaaa tctgtgtggc tgtcactcgg ctgcatgctt agtgcactca
+      121 cgcagtataa ttaataacta attactgtcg ttgacaggac acgagtaact cgtctatctt
+      181 ctgcaggctg cttacggttt cgtccgtgtt gcagccgatc atcagcacat ctaggttttg
+      241 tccgggtgtg accgaaaggt aagatggaga gccttgtccc tggtttcaac gagaaaacac
+      301 acgtccaact cagtttgcct gttttacagg ttcgcgacgt gctcgtacgt ggctttggag
 //     

@@ -142,6 +142,21 @@ deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2,
         }
     }
 
+    for( int i = 0 ; i <= gen1.size() ; i++)
+    {
+        cout << gen1[i] << endl;
+    }
+
+    for( int i = 0 ; i <= alignment.size() ; i++)
+    {
+        cout << alignment[i] << endl;
+    }
+
+    for( int i = 0 ; i <= gen2.size() ; i++)
+    {
+        cout << gen2[i] << endl;
+    }
+
     return alignment;
 
 }

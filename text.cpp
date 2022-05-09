@@ -16,6 +16,7 @@ string readGen(string genPath)   // recibir nombre del archivo txt
     {
         if(line1.find("ORIGIN")!=(string::npos)) //si llegue a origin
         {
+            cout << "found line !" << endl;
             while(line1.find("//") == (string::npos))//mientras no llegue a //
             {
                 getline(fin, line1);
@@ -39,11 +40,11 @@ string readGen(string genPath)   // recibir nombre del archivo txt
             cout<<line2<<endl;
             return line2;
         }
-
     }
     return "error";
 } 
 
+/*
 string getStringPath (char* genPath)
 {
     string aux = genPath;
@@ -57,7 +58,7 @@ string getStringPath (char* genPath)
     }
 
     return result;
-}   
+}   */
 
 
 void printGen (deque<char> alignment, size_t sizeGen1 , size_t sizeGen2, string gen1, string gen2)
@@ -72,7 +73,7 @@ void printGen (deque<char> alignment, size_t sizeGen1 , size_t sizeGen2, string 
 
     while (gen1[i]!= '0' && gen2[j]!='1' && alignment[k]!='2')
     {
-        string aux1 = writeGenAux() //HAY QUE VER COMO INTERCALAR LLAMADA A FRENGLON DE GENOMA1 (SU AUXILIAR), ALINEAMIENTO (AUXILIAR?) Y LLAMADA A RENGLON DE GENOMA2(AUXILIAR)
+        //string aux1 = writeGenAux(); //HAY QUE VER COMO INTERCALAR LLAMADA A FRENGLON DE GENOMA1 (SU AUXILIAR), ALINEAMIENTO (AUXILIAR?) Y LLAMADA A RENGLON DE GENOMA2(AUXILIAR)
         i+=65; //REEMPLAZO COUT POR FOUT Y YA IMPRIMO EN EL ARCHIVO. 
 
     }
