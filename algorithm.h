@@ -23,8 +23,8 @@ enum Direction
 };
 
 
-deque<char> algorithm(char*, char*, size_t, size_t);
+deque<char> algorithm(string&, string&, size_t, size_t);
 void calculateScoreandDirection(AlgorithmData*, char*, char*, int, int);
-deque<char> calculateOptimumPath(AlgorithmData*, int, int, char*, char*);
+deque<char> calculateOptimumPath(AlgorithmData*, int, int, string&, string&);
 
 #endif//_ALGORITHM_H

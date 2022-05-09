@@ -1,9 +1,14 @@
 #include "algorithm.h"
+#include <stdlib.h>
+#include <iostream>
 
 using namespace std;
 
-deque<char> algorithm(char* gen1, char* gen2, size_t sizeGen1, size_t sizeGen2)
+deque<char> algorithm(string& gen1, string& gen2, size_t sizeGen1, size_t sizeGen2)
 {
+    char* pointerGen1 = &gen1[0];
+    char* pointerGen2 = &gen2[0];
+
     AlgorithmData* mat = new AlgorithmData[(sizeGen1+1)*(sizeGen2+1)];
 
     mat[0].score = 0;
@@ -15,13 +20,13 @@ deque<char> algorithm(char* gen1, char* gen2, size_t sizeGen1, size_t sizeGen2)
         mat[i].direction = horizontal;
     }
 
-    for(int j=1 ; j <= (sizeGen2+1) ; j++)
+    for(int j=1 ; j <= (sizeGen1+1) ; j++)
     {
-        mat[j*(sizeGen1+1)].score = -j;
-        mat[j*(sizeGen1+1)].direction = vertical;
+        mat[j*(sizeGen2+1)].score = -j;
+        mat[j*(sizeGen2+1)].direction = vertical;
     }
 
-    calculateScoreandDirection(mat, gen1, gen2, sizeGen1, sizeGen2);
+    calculateScoreandDirection(mat, pointerGen1, pointerGen2, sizeGen1, sizeGen2);
     
     //test
     //cout << mat[17].score << endl;      // test
@@ -38,7 +43,7 @@ deque<char> algorithm(char* gen1, char* gen2, size_t sizeGen1, size_t sizeGen2)
 }
 
 
-void calculateScoreandDirection (AlgorithmData* mat, char* gen1, char* gen2, int sizeGen1, int sizeGen2)
+void calculateScoreandDirection (AlgorithmData* mat, char* pointerGen1, char* pointerGen2, int sizeGen1, int sizeGen2)
 {
 
     int verticalScore;
@@ -46,61 +51,62 @@ void calculateScoreandDirection (AlgorithmData* mat, char* gen1, char* gen2, int
     int horizontalScore;
     int maxScore;
 
-    for(int j=1; j < (sizeGen2+1); j++)
+    for(int j=1; j < (sizeGen1+1); j++)
     {
-        for(int i=1; i < (sizeGen1+1) ; i++)
+        for(int i=1; i < (sizeGen2+1) ; i++)
         {
-            //int actualPosition = i+(j*(sizeGen1+1));        //test
+            int actualPosition = i+(j*(sizeGen2+1));        //test
             
-            //int verticalValue = mat[i+((j-1)*(sizeGen1+1))].score;      //test
-            verticalScore = mat[i+((j-1)*(sizeGen1+1))].score + INDELSCORE; 
+            int verticalValue = mat[i+((j-1)*(sizeGen2+1))].score;      //test
+            verticalScore = mat[i+((j-1)*(sizeGen2+1))].score + INDELSCORE; 
 
-            //int horizontalValue = mat[(i-1)+(j*(sizeGen1+1))].score;        //test
-            horizontalScore = mat[(i-1)+(j*(sizeGen1+1))].score + INDELSCORE;
+            int horizontalValue = mat[(i-1)+(j*(sizeGen2+1))].score;        //test
+            horizontalScore = mat[(i-1)+(j*(sizeGen2+1))].score + INDELSCORE;
 
-            //int diagonalValue = mat[(i-1)+((j-1)*(sizeGen1+1))].score;      //test
+            int diagonalValue = mat[(i-1)+((j-1)*(sizeGen2+1))].score;      //test
 
-            //char caracterGen1 = gen1[i-1];       //test
-            //char caracterGen2 = gen2[j-1];       //test
+            char caracterGen1 = pointerGen1[j-1];       //test
+            char caracterGen2 = pointerGen2[i-1];       //test
 
-            if(gen1[i-1] == gen2[j-1])    // coinciden los caracteres
+            if(pointerGen1[j-1] == pointerGen2[i-1])    // coinciden los caracteres
             {
-                diagonalScore = mat[(i-1)+((j-1)*(sizeGen1+1))].score + MATCHSCORE;
+                diagonalScore = mat[(i-1)+((j-1)*(sizeGen2+1))].score + MATCHSCORE;
             }
             else
             {   
-                diagonalScore = mat[(i-1)+((j-1)*(sizeGen1+1))].score + SUSTSCORE;
+                diagonalScore = mat[(i-1)+((j-1)*(sizeGen2+1))].score + SUSTSCORE;
             }
 
             if(verticalScore > horizontalScore)
             {
                 maxScore = verticalScore;
-                mat[i+(j*(sizeGen1+1))].direction = vertical;
+                mat[i+(j*(sizeGen2+1))].direction = vertical;
             }
             else
             {
                 maxScore = horizontalScore;
-                mat[i+(j*(sizeGen1+1))].direction = horizontal;
+                mat[i+(j*(sizeGen2+1))].direction = horizontal;
             }
 
             if(diagonalScore > maxScore)
             {
                 maxScore = diagonalScore;
-                mat[i+(j*(sizeGen1+1))].direction = diagonal;
+                mat[i+(j*(sizeGen2+1))].direction = diagonal;
             }
-            mat[i+(j*(sizeGen1+1))].score = maxScore;       // la posicion que estoy editando es mat[i+(j*(sizeGen1+1))]
-            // cout << "posicion " << i << " , " << j << " = " << mat[i+(j*(sizeGen1+1))].score << endl;   //test
+            mat[i+(j*(sizeGen2+1))].score = maxScore;       // la posicion que estoy editando es mat[i+(j*(sizeGen1+1))]
+            cout << "score" << i << " , " << j << " : " << mat[i+(j*(sizeGen2+1))].score << endl;
+            cout << "direction" << i << " , " << j << " : " << mat[i+(j*(sizeGen2+1))].direction << endl;
         }
     }
-
 }
 
-deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2, char* gen1, char* gen2)
+deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2, string& gen1, string& gen2)
 {
     int currentPositionIndex = (sizeGen1 + 1)*(sizeGen2 + 1) - 1;
     int nextPositionIndex = currentPositionIndex;
 
-    int i = 0;
+    int indexGen1 = sizeGen1;
+    int indexGen2 = sizeGen2;
     deque<char> alignment;
 
     while(nextPositionIndex != 0)
@@ -108,17 +114,20 @@ deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2,
         switch(mat[nextPositionIndex].direction)
         {
             case vertical:
-                nextPositionIndex -= (sizeGen1+1);
+                nextPositionIndex -= (sizeGen2+1);
                 alignment.push_front(' ');
-                (gen1).insert(i, "-", 1);
+                gen2.insert(indexGen2, "-", 1);
+                indexGen1--;
                 break;
             case horizontal:
                 nextPositionIndex -= 1;
                 alignment.push_front(' ');
+                gen1.insert(indexGen1, "-", 1);
+                indexGen2--;
                 break;
             case diagonal:
                 int currentPositionIndex = nextPositionIndex;
-                nextPositionIndex -= (sizeGen1+2);
+                nextPositionIndex -= (sizeGen2+2);
                 if(mat[currentPositionIndex].score > mat[nextPositionIndex].score)  // coinciden
                 {
                     alignment.push_front('|');
@@ -127,9 +136,10 @@ deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2,
                 {
                     alignment.push_front('*');
                 }
+                indexGen1--;
+                indexGen2--;
                 break;
         }
-        i++;
     }
 
     return alignment;
