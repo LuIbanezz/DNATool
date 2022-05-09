@@ -5,4 +5,7 @@
           "\"test2.txt\""
       ]
   },
+  "files.associations": {
+    "deque": "cpp"
+  },
 }

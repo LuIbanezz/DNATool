@@ -12,7 +12,7 @@ string readGen(string);
 string getStringPath(char*);
 
 
-string writeGenAux (size_t , int );
-void printGen (deque<char> , size_t , size_t , string , string);
+void printGen (string& alignment, size_t sizeGen1 , size_t sizeGen2, string& gen1, string& gen2);
+// void writeGenAux (size_t sizeGen, int line, string& gen1, string& gen2);
 
 #endif //_TEXT_H

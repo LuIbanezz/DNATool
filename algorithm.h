@@ -3,6 +3,9 @@
 
 #include <string>
 #include <deque>
+#include <list>
+#include <stdlib.h>
+#include <iostream>
 #define INDELSCORE -1
 #define MATCHSCORE 1
 #define SUSTSCORE -1
@@ -23,8 +26,8 @@ enum Direction
 };
 
 
-deque<char> algorithm(string&, string&, size_t, size_t);
+string algorithm(string&, string&, size_t, size_t);
 void calculateScoreandDirection(AlgorithmData*, char*, char*, int, int);
-deque<char> calculateOptimumPath(AlgorithmData*, int, int, string&, string&);
+string calculateOptimumPath(AlgorithmData*, int, int, string&, string&);
 
 #endif//_ALGORITHM_H

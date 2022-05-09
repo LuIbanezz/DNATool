@@ -1,10 +1,8 @@
 #include "algorithm.h"
-#include <stdlib.h>
-#include <iostream>
 
 using namespace std;
 
-deque<char> algorithm(string& gen1, string& gen2, size_t sizeGen1, size_t sizeGen2)
+string algorithm(string& gen1, string& gen2, size_t sizeGen1, size_t sizeGen2)
 {
     char* pointerGen1 = &gen1[0];
     char* pointerGen2 = &gen2[0];
@@ -35,7 +33,7 @@ deque<char> algorithm(string& gen1, string& gen2, size_t sizeGen1, size_t sizeGe
     //cout << mat[17].diagonal << endl;   // test
     //
 
-    deque<char> alignment = calculateOptimumPath(mat, sizeGen1, sizeGen2, gen1, gen2);
+    string alignment = calculateOptimumPath(mat, sizeGen1, sizeGen2, gen1, gen2);
 
     return alignment;
 
@@ -94,20 +92,20 @@ void calculateScoreandDirection (AlgorithmData* mat, char* pointerGen1, char* po
                 mat[i+(j*(sizeGen2+1))].direction = diagonal;
             }
             mat[i+(j*(sizeGen2+1))].score = maxScore;       // la posicion que estoy editando es mat[i+(j*(sizeGen1+1))]
-            cout << "score" << i << " , " << j << " : " << mat[i+(j*(sizeGen2+1))].score << endl;
-            cout << "direction" << i << " , " << j << " : " << mat[i+(j*(sizeGen2+1))].direction << endl;
+            //cout << "score" << i << " , " << j << " : " << mat[i+(j*(sizeGen2+1))].score << endl;
+            //cout << "direction" << i << " , " << j << " : " << mat[i+(j*(sizeGen2+1))].direction << endl;
         }
     }
 }
 
-deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2, string& gen1, string& gen2)
+string calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2, string& gen1, string& gen2)
 {
     int currentPositionIndex = (sizeGen1 + 1)*(sizeGen2 + 1) - 1;
     int nextPositionIndex = currentPositionIndex;
 
     int indexGen1 = sizeGen1;
     int indexGen2 = sizeGen2;
-    deque<char> alignment;
+    string alignment;
 
     while(nextPositionIndex != 0)
     {
@@ -115,13 +113,13 @@ deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2,
         {
             case vertical:
                 nextPositionIndex -= (sizeGen2+1);
-                alignment.push_front(' ');
+                alignment.push_back(' ');
                 gen2.insert(indexGen2, "-", 1);
                 indexGen1--;
                 break;
             case horizontal:
                 nextPositionIndex -= 1;
-                alignment.push_front(' ');
+                alignment.push_back(' ');
                 gen1.insert(indexGen1, "-", 1);
                 indexGen2--;
                 break;
@@ -130,11 +128,11 @@ deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2,
                 nextPositionIndex -= (sizeGen2+2);
                 if(mat[currentPositionIndex].score > mat[nextPositionIndex].score)  // coinciden
                 {
-                    alignment.push_front('|');
+                    alignment.push_back('|');
                 }
                 else
                 {
-                    alignment.push_front('*');
+                    alignment.push_back('*');
                 }
                 indexGen1--;
                 indexGen2--;
@@ -142,6 +140,14 @@ deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2,
         }
     }
 
+    string auxAlignment;
+
+    for(int i = (alignment.size() -1); i>=0; i--)
+    {
+        auxAlignment.push_back(alignment[i]);
+    }
+
+    /*
     for( int i = 0 ; i <= gen1.size() ; i++)
     {
         cout << gen1[i] << endl;
@@ -155,8 +161,8 @@ deque<char> calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2,
     for( int i = 0 ; i <= gen2.size() ; i++)
     {
         cout << gen2[i] << endl;
-    }
+    }*/
 
-    return alignment;
+    return auxAlignment;
 
 }
