@@ -60,43 +60,28 @@ string getStringPath (char* genPath)
 }   
 
 
-void printGen (deque<char> alignment, size_t sizeGen1 , size_t sizeGen2, string gen1, string gen2)
-{ 
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    gen1.push_back('0');
-    gen2.push_back('1');
-    alignment.push_back('2');
-    ofstream fout ("out.txt");//lo vuelvo mi salida
-
-    while (gen1[i]!= '0' && gen2[j]!='1' && alignment[k]!='2')
-    {
-        string aux1 = writeGenAux() //HAY QUE VER COMO INTERCALAR LLAMADA A FRENGLON DE GENOMA1 (SU AUXILIAR), ALINEAMIENTO (AUXILIAR?) Y LLAMADA A RENGLON DE GENOMA2(AUXILIAR)
-        i+=65; //REEMPLAZO COUT POR FOUT Y YA IMPRIMO EN EL ARCHIVO. 
-
-    }
-}
-
-string writeGenAux (size_t sizeGen, int line)//me llegan gen1 y gen2 por referencia
+void writeGen (vector<char> gen1, vector<char> gen2, size_t sizeGen1, size_t sizeGen2)
 {
-    string gen = "actg";//SACAR
-    string aux;
+    ostringstream out1;
+    ostringstream out2;
 
-    for(int j = 0; j<sizeGen ; j+=10)
+    for (char c: gen1)
     {
-        gen.insert(j,' ',1);
-    }
-//HACER ESTO ANTES
-    //la idea es hacer un string auxiliar que contenga 60 caracteres mas 5 espacios, y que imprima eso
-
-    for (int i = line; i<line+65 ; i++) //HAY QUE VER COMO PROGRAMAR LINE PARA QUE QUEDE EL INDICE DE GEN EN EL RENGLON QUE CORRESPONDE
-    {
-        aux += gen[i];
+        out1 << c;
     }
 
-    return aux; //estoy devolviendo un renglon de un genoma
+    for (char c: gen2)
+    {
+        out2 << c;
+    }
+
+    string output1(out1.str());
+    string output2(out2.str());
+    
+    
+
+
+
+
 }
-
-
 
