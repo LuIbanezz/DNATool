@@ -1,0 +1,53 @@
+Mystery genome 1 - OV806939.txt
+ - con Alpha B.1.1.7 - MZ314997 = 29730
+ - con Beta B.1.351 - MZ314996 = 29771
+ - con Delta B.1.617.2 - OM202516 = 29826
+ - con Gamma P.1 - MW642250 = 29727
+ - con Omicron B.1.1.529 BA.1 - OM432158 = 29696
+ - con Omicron B.1.1.529 BA.2 - OM617939 = 29701
+ - con Wuhan reference genome - NC_045512.2 = 29789
+
+Este genoma se parece mas a Delta B.1.617.2 - OM202516 
+Tiene 12 inserciones, 2 deleciones y 24 substituciones
+
+
+
+Mystery genome 2 - MT345875
+- con Alpha B.1.1.7 - MZ314997 = 29822
+- con Beta B.1.351 - MZ314996 = 29865
+- con Delta B.1.617.2 - OM202516 = 29807
+- con Gamma P.1 - MW642250 = 29821
+- con Omicron B.1.1.529 BA.1 - OM432158 = 29774
+- con Omicron B.1.1.529 BA.2 - OM617939 = 29777
+- con Wuhan reference genome - NC_045512.2 = 29885
+
+Este genoma se parece mas a Wuhan reference genome - NC_045512.2
+Tiene 9 sustituciones
+
+
+
+Mystery genome 3 - OU772970
+- con Alpha B.1.1.7 - MZ314997 = 29745
+- con Beta B.1.351 - MZ314996 = 29786
+- con Delta B.1.617.2 - OM202516 = 29840
+- con Gamma P.1 - MW642250 = 29742
+- con Omicron B.1.1.529 BA.1 - OM432158 = 29711
+- con Omicron B.1.1.529 BA.2 - OM617939 = 29716
+- con Wuhan reference genome - NC_045512.2 = 29804
+
+Este genoma se parece mas a Delta B.1.617.2 - OM202516
+Tiene 12 inserciones, 2 deleciones y 17 sustituciones
+
+
+
+BONUS:
+
+¿Cuál es la complejidad computacional del algoritmo de Needleman-Wunsch?
+Es n^2 porque para recorrer la matriz que se usa para encontrar el aliniamiento
+optimo se usa un bucle adentro del otro (un for adentro de orto for).
+
+Prueba otros valores para el sistema de puntaje. ¿Qué observas?
+Al usar matchscore = 2 y substscore = -2 y comparar el Mystery genome 3 con el Delta
+ahora el puntaje de aliniamiento es 59694, lo cual indica que se ve mayor diferencia en 
+puntaje de alineamiento entre un genoma y otro. 
+

@@ -1,99 +1,96 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <stdlib.h>
-#include "algorithm.h"
-#include <sstream>
+/**
+ * @file text.cpp
+ * @authors	Lucía Ibañez, Lucía Ruiz.
+ *
+ * @brief Input and output manager. Reads genome and prints alignment in another file.
+ *
+ * @copyright Copyright (c) 2022 ~ EDA ~ ITBA
+ *
+ */
 
-using namespace std;
+#include "text.h"
 
-#define SIZE_OF_LINE 61
-#define SIZE_OF_LINE_WITH_SPACES 65
+/**
+ * @brief Genome reading. Interpretation and conversion to string of 'a','c','g','t' combinations.
+ * 
+ * @param genPath: receives file name of .txt.
+ * @return string: returns genetic sequence by filtering 'a', 'c', 'g', 't' characters only.
+ */
 
-string readGen(string genName)   // recibir nombre del archivo txt
+string readGen(string genPath)
 {
-    string genPath = "../resources/test/" + genName;
+
     ifstream fin(genPath, ios::in);
 
-    // bool isOpen = fin.is_open(); // test
-
+    bool isOpen = fin.is_open();
+    if(!isOpen)
+    {
+        cout << "Error: could not open " << genPath << endl;
+    }
     string line1;
     string line2;
-    int i=0;
+    int i = 0;
 
     while(getline(fin, line1))
     {
-        if(line1.find("ORIGIN")!=(string::npos)) //si llegue a origin
+        if(line1.find("ORIGIN") != (string::npos))
         {
-            while(line1.find("//") == (string::npos))//mientras no llegue a //
+            while(line1.find("//") == (string::npos))
             {
                 getline(fin, line1);
-                while (line1[i] != 'a' && line1[i] != 'c' && line1[i] != 'g' && line1[i] != 't' && i<line1.size())
+                int j = 1;
+                while (line1[i] != 'a' && line1[i] != 'c' && line1[i] != 'g' && 
+                        line1[i] != 't' && i < line1.size())
                 {
                     i++;
-                }//si no es acgt, avanzo de a un char hasta quedar en acgt
+                }
 
-                while (i<line1.size())
+                while (i < line1.size())
                 {
-                    if(line1[i] != ' ')
+                    if((line1[i] != ' ') && (line1[i] != '\r'))
                     {
-                        line2 += line1[i]; //copio el char acgt
+                        line2 += line1[i]; 
                     }
                     i++;
                 }
-                i=0;//i vuelve a ser cero porque evalua los chars en un renglon 
+                i=0;
+                j++;
             }
-            // cout<<line2<<endl;
+
             return line2;
         }
     }
     return "error";
 } 
 
-
-/*string getStringPath (char* genPath)
-{
-    string aux = genPath;
-
-    string result;
-
-    size_t size = aux.find(".txt") + (size_t)4; //sumo tamano del txt mas la cantidad de elementos hasta el punto
-    for (int i = 0; i<size ; i++) //CUIDADO QUE CAMBIE INT POR SIZE_T
-    {
-        result += aux[i];
-    }
-
-    return result;
-}*/
-
-
-void printGen (string& alignment, size_t sizeGen1 , size_t sizeGen2, string& gen1, string& gen2)
+/**
+ * @brief Genome printing in out.txt file, intercalating 
+ * 
+ * @param alignment references string alignment (from main)
+ * @param sizeGen size of both genomes and of alignment 
+ * @param gen1 refernces string gen1 (from main)
+ * @param gen2 references string gen2 (from main)
+ */
+void printGen (string& alignment, size_t sizeGen, string& gen1, string& gen2)
 { 
-    ofstream fout("out.txt");      //lo vuelvo mi salida
+    ofstream fout("out.txt");
 
     bool isOpen = fout.is_open();
 
     for(int i = 0 ; i <= gen1.size() ; i++)
     {
-        for(int j = 10; j<SIZE_OF_LINE && j< gen1.size() ; j+=10)
+        for(int j = 10 ; j<SIZE_OF_LINE && j< gen1.size() ; j+=11)
         {
             if(j+(i*SIZE_OF_LINE) < gen1.size()){
-                gen1.insert(j+(i*SIZE_OF_LINE),1,' ');
-                alignment.insert(j+(i*SIZE_OF_LINE),1,' ');
-                gen2.insert(j+(i*SIZE_OF_LINE),1,' ');
-                /*
-                if(j==60)
-                {
-                    gen1.insert((i*SIZE_OF_LINE)+j,1,'0');
-                    alignment.insert((i*SIZE_OF_LINE)+j,1,'0');
-                    gen2.insert((i*SIZE_OF_LINE)+j,1,'0');
-                }*/
+                gen1.insert(j + (i*SIZE_OF_LINE) , 1 ,' ');
+                alignment.insert(j + (i*SIZE_OF_LINE) , 1 ,' ');
+                gen2.insert(j + (i*SIZE_OF_LINE) , 1 ,' ');
             }
         }
     }
     int finalSize = gen1.size();
 
-    for(int k = 0; k*SIZE_OF_LINE<=finalSize; k++)
+    for(int k = 0 ; k*SIZE_OF_LINE <= finalSize ; k++)
     {
         string lineGen1 = gen1.substr(k*SIZE_OF_LINE, SIZE_OF_LINE);
         fout << lineGen1 << endl;

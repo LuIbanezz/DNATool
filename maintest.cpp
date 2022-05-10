@@ -1,4 +1,13 @@
-#include <iostream>
+
+/**
+ * @file maintest.cpp
+ * @authors	Lucía Ibañez, Lucía Ruiz.
+ *
+ * @brief Algorithm tester.
+ *
+ * @copyright Copyright (c) 2022 ~ EDA ~ ITBA
+ *
+ */#include <iostream>
 #include <fstream>
 #include <string>
 #include <stdlib.h>

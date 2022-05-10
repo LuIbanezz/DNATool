@@ -1,8 +1,8 @@
 {
   "cmake.debugConfig": {
       "args": [
-          "\"test1.txt\"",
-          "\"test2.txt\""
+        "\"../resources/test/Mystery genome 3 - OU772970.txt\"",
+        "\"../resources/reference/Delta B.1.617.2 - OM202516.txt\""
       ]
   },
   "files.associations": {

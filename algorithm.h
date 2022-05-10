@@ -1,3 +1,13 @@
+/**
+ * @file algorithm.h
+ * @authors	Lucía Ibañez, Lucía Ruiz.
+ *
+ * @brief Header for Needleman-Wunsch algorithm manager.
+ *
+ * @copyright Copyright (c) 2022 ~ EDA ~ ITBA
+ *
+ */
+
 #ifndef _ALGORITHM_H
 #define _ALGORITHM_H
 
@@ -6,6 +16,7 @@
 #include <list>
 #include <stdlib.h>
 #include <iostream>
+
 #define INDELSCORE -1
 #define MATCHSCORE 1
 #define SUSTSCORE -1
