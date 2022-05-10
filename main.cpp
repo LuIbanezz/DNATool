@@ -20,8 +20,9 @@ using namespace std;
 int main ( int argc , char * argv[] ) 
 {         
     string gen1 = readGen(argv[1]);
-    if(gen1 == "error"){
-        cout << "Error: could not find line ORIGIN"
+    if(gen1 == "error")
+    {
+        cout << "Error: could not find line ORIGIN" << endl;
     }
     string gen2 = readGen(argv[2]);
 

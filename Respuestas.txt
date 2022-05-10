@@ -43,11 +43,10 @@ Tiene 12 inserciones, 2 deleciones y 17 sustituciones
 BONUS:
 
 ¿Cuál es la complejidad computacional del algoritmo de Needleman-Wunsch?
-Es n^2 porque para recorrer la matriz que se usa para encontrar el aliniamiento
-optimo se usa un bucle adentro del otro (un for adentro de orto for).
+Es n^2 porque para recorrer la matriz, que se usa para encontrar el alineamiento
+optimo, se usa un bucle adentro del otro (un for adentro de otro for).
 
 Prueba otros valores para el sistema de puntaje. ¿Qué observas?
 Al usar matchscore = 2 y substscore = -2 y comparar el Mystery genome 3 con el Delta
 ahora el puntaje de aliniamiento es 59694, lo cual indica que se ve mayor diferencia en 
 puntaje de alineamiento entre un genoma y otro. 
-

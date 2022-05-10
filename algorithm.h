@@ -12,9 +12,6 @@
 #define _ALGORITHM_H
 
 #include <string>
-#include <deque>
-#include <list>
-#include <stdlib.h>
 #include <iostream>
 
 #define INDELSCORE -1

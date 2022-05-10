@@ -10,6 +10,7 @@
 
 #include "algorithm.h"
 
+
 /**
  * @brief Manages the general algorithm
  * 
@@ -19,6 +20,7 @@
  * @param sizeGen2 : size of string gen2
  * @return string alignment
  */
+
 string algorithm(string& gen1, string& gen2, size_t sizeGen1, size_t sizeGen2)
 {
     char* pointerGen1 = &gen1[0];
@@ -60,6 +62,7 @@ string algorithm(string& gen1, string& gen2, size_t sizeGen1, size_t sizeGen2)
  * @param sizeGen1 size of string gen2
  * @param sizeGen2 size of string gen1
  */
+
 void calculateScoreandDirection (AlgorithmData* mat, char* pointerGen1, char* pointerGen2, 
                                 int sizeGen1, int sizeGen2)
 {
@@ -119,6 +122,7 @@ void calculateScoreandDirection (AlgorithmData* mat, char* pointerGen1, char* po
  * @param gen2 reference to string Gen2 (from main)
  * @return string alignment of Gen1 with Gen2
  */
+
 string calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2, string& gen1, string& gen2)
 {
     int currentPositionIndex = (sizeGen1 + 1) * (sizeGen2 + 1) - 1;
@@ -158,6 +162,7 @@ string calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2, stri
             case diagonal:
                 int currentPositionIndex = nextPositionIndex;
                 nextPositionIndex -= (sizeGen2+2);
+
                 if(mat[currentPositionIndex].score > mat[nextPositionIndex].score)
                 {
                     alignment.push_back('|');
@@ -169,6 +174,7 @@ string calculateOptimumPath(AlgorithmData* mat, int sizeGen1, int sizeGen2, stri
                     alignmentScore += SUSTSCORE;
                     amountOfSubstitutions++;
                 }
+                
                 indexGen1--;
                 indexGen2--;
                 break;

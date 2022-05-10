@@ -14,8 +14,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <stdlib.h>
-#include <sstream>
 #include "algorithm.h"
 
 #define SIZE_OF_LINE 66
